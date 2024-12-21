@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        /* Basic styles */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+          background-color: #444;
+          padding: 10px;
+          text-align: center;
+        }
+
+        nav a {
+          color: white;
+          text-decoration: none;
+          margin: 0 10px;
+          padding: 5px;
+        }
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed; /* Added for fixed footer */
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            section {
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>My Portfolio</h1>
+        <p>A showcase of my work</p>
+    </header>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <img src="C:\Users\Stark Solutions\Downloads\images (1).jpeg" alt="Profile Picture">
+        <p>I am a passionate web developer with experience in HTML, CSS, and JavaScript. I love creating beautiful and functional websites.</p>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project">
+            <h3>Project 1</h3>
+            <img src="C:\Users\Stark Solutions\Downloads\rain.jpeg" alt="Project 1">
+            <p>Description of project 1.</p>
+        </div>
+        <div class="project">
+            <h3>Project 2</h3>
+            <img src="C:\Users\Stark Solutions\Downloads\images (5).jpeg" alt="Project 2">
+            <p>Description of project 2.</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Email: example@email.com</p>
+        <p>Phone: 123-456-7890</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 My Portfolio</p>
+    </footer>
+    <script>
+        // Basic JavaScript (you can add more interactivity here)
+        console.log("Portfolio website loaded!");
+        //Example: Alert message on page load.
+        //alert("Welcome to my portfolio!");
+    </script>
+</body>
+</html>
