@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        #game-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            border: 2px solid #333;
+            cursor: pointer;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <div id="board"></div>
+    <div id="message"></div>
+    <button id="restart-btn">Restart Game</button>
+</div>
+
+<script>
+    let board = Array(9).fill(null); // Initialize an empty board (9 cells)
+    let currentPlayer = 'X'; // X starts first
+    let gameActive = true; // To track if the game is still active
+
+    const boardElement = document.getElementById('board');
+    const messageElement = document.getElementById('message');
+    const restartButton = document.getElementById('restart-btn');
+
+    // Function to initialize the game board
+    function initializeBoard() {
+        boardElement.innerHTML = ''; // Clear the previous board
+
+        // Create the cells dynamically
+        for (let i = 0; i < 9; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('cell');
+            cell.addEventListener('click', () => handleCellClick(i));
+            boardElement.appendChild(cell);
+        }
+
+        // Reset the game message
+        messageElement.textContent = `Player ${currentPlayer}'s turn`;
+    }
+
+    // Function to handle the cell click event
+    function handleCellClick(index) {
+        if (!gameActive || board[index] !== null) return; // Ignore if the game is over or the cell is filled
+
+        // Mark the cell with the current player's symbol
+        board[index] = currentPlayer;
+        updateBoard();
+
+        // Check for win or tie
+        if (checkWin()) {
+            messageElement.textContent = `Player ${currentPlayer} wins!`;
+            gameActive = false;
+        } else if (board.every(cell => cell !== null)) {
+            messageElement.textContent = "It's a tie!";
+            gameActive = false;
+        } else {
+            // Switch players if the game is still active
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            messageElement.textContent = `Player ${currentPlayer}'s turn`;
+        }
+    }
+
+    // Function to update the board display
+    function updateBoard() {
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach((cell, index) => {
+            cell.textContent = board[index]; // Display 'X' or 'O' in the cell
+        });
+    }
+
+    // Function to check if the current player has won
+    function checkWin() {
+        const winPatterns = [
+            [0, 1, 2], // Top row
+            [3, 4, 5], // Middle row
+            [6, 7, 8], // Bottom row
+            [0, 3, 6], // Left column
+            [1, 4, 7], // Center column
+            [2, 5, 8], // Right column
+            [0, 4, 8], // Diagonal from top left to bottom right
+            [2, 4, 6]  // Diagonal from top right to bottom left
+        ];
+
+        return winPatterns.some(pattern => {
+            const [a, b, c] = pattern;
+            return board[a] && board[a] === board[b] && board[a] === board[c]; // Check if all 3 cells in the pattern are the same
+        });
+    }
+
+    // Function to restart the game
+    function restartGame() {
+        board = Array(9).fill(null); // Reset the board
+        currentPlayer = 'X'; // Start with 'X'
+        gameActive = true; // Make the game active again
+        initializeBoard(); // Reinitialize the board
+    }
+
+    // Add restart functionality to the button
+    restartButton.addEventListener('click', restartGame);
+
+    // Initialize the game when the page loads
+    initialsizeBoard();
+</script>
+
+</body>
+</html>
